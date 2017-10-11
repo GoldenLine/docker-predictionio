@@ -49,8 +49,8 @@ RUN pip install predictionio
 RUN apt-get install -y libgfortran3 libatlas3-base libopenblas-base
 
 #PredictionIO
-RUN wget -O - http://www-us.apache.org/dist/incubator/predictionio/0.10.0-incubating/apache-predictionio-0.10.0-incubating.tar.gz | tar zx && \
-    cd apache-predictionio* && \
+RUN wget -O - https://github.com/apache/incubator-predictionio/archive/v0.10.0-incubating.tar.gz | tar zx && \
+    cd incubator-predictionio-0.10.0-incubating* && \
     ./make-distribution.sh && \
     tar zxvf PredictionIO-0.10.0-incubating.tar.gz && \
     rm *gz && \
