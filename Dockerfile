@@ -82,3 +82,11 @@ COPY quickstartapp quickstartapp
 COPY sv /etc/service 
 ARG BUILD_INFO
 LABEL BUILD_INFO=$BUILD_INFO
+
+
+
+# goldenline
+RUN git clone https://github.com/actionml/universal-recommender
+COPY bastards-recommender/engine.json /universal-recommender/
+COPY bastards-recommender/data.json /
+RUN sed -i -e 's/0.13.7/0.13.9/' /PredictionIO/project/build.properties

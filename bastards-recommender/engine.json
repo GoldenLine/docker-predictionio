@@ -1,0 +1,58 @@
+{
+  "id": "default",
+  "description": "Default settings",
+  "comment": "replace this with your JVM package prefix, like org.apache",
+  "engineFactory": "com.actionml.RecommendationEngine",
+  "datasource": {
+    "params" : {
+      "appName": "universal-recommender",
+      "eventNames": ["apply", "view"],
+      "eventWindow": {
+        "duration": "3650 days"
+      } 
+   }
+ },
+  "sparkConf": {
+    "spark.serializer": "org.apache.spark.serializer.KryoSerializer",
+    "spark.kryo.registrator": "org.apache.mahout.sparkbindings.io.MahoutKryoRegistrator",
+    "spark.kryo.referenceTracking": "false",
+    "spark.kryoserializer.buffer": "300m",
+    "spark.executor.memory": "4g",
+    "es.index.auto.create": "true"
+  },
+  "algorithms": [
+    {
+      "name": "ur",
+      "params": {
+        "appName": "universal-recommender",
+        "indexName": "recommendation_idx",
+	"expireDateName": "expires_at",
+        "availableDateName": "created_at",
+        "typeName": "items",
+        "eventNames": ["apply", "view"],
+        "indicators": [
+            {
+                "name": "apply"
+            },{
+                "name": "view",
+                "maxCorrelatorsPerItem": 50
+            }
+        ],
+        "recsModel": "all",
+        "rankings": [
+          {
+            "name": "popRank",
+            "type": "popular",
+            "eventNames": ["apply", "view"],
+            "duration": "3 days",
+            "endDate": "ISO8601-date"
+          },
+          {
+            "name": "hotRank",
+            "type": "hot"
+          }
+        ]
+      }
+    }
+  ]
+}
