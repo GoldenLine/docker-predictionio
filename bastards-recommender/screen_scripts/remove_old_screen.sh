@@ -1,6 +1,5 @@
 #!/bin/bash
-#YESTERDAY=$(date +%Y%m%d -d "yesterday") #to nie dziala na macu, ale na debianie juz tak
-YESTERDAY=$(date +%Y%m%d) #to nie dziala na macu, ale na debianie juz tak
+YESTERDAY=$(date +%Y%m%d -d "yesterday") #to nie dziala na macu, ale na debianie juz tak
 YESTERDAY_CMD_NAME="candidates_prediction_$YESTERDAY"
 
 echo $YESTERDAY
