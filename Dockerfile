@@ -89,4 +89,5 @@ LABEL BUILD_INFO=$BUILD_INFO
 RUN git clone https://github.com/actionml/universal-recommender
 COPY bastards-recommender/engine.json /universal-recommender/
 COPY bastards-recommender/data.json /
+COPY bastards-recommender/screen_scripts /universal-recommender/cron/
 RUN sed -i -e 's/0.13.7/0.13.9/' /PredictionIO/project/build.properties
